@@ -1,0 +1,60 @@
+# ------------------------------
+# ❗ REQUIRED: DO NOT IGNORE KEYS
+# student_private.pem
+# student_public.pem
+# instructor_public.pem
+# MUST be committed for this assignment
+# ------------------------------
+
+# ---------------------------------------
+# Encrypted seed file (sensitive, exclude)
+# ---------------------------------------
+encrypted_seed.txt
+
+# ---------------------------------------
+# Python cache directories
+# ---------------------------------------
+__pycache__/
+pycache/
+*.pyc
+
+# Some Linux terminals generate "рус" suffix
+pycache/рус
+__pycache__/рус
+
+# ---------------------------------------
+# Environment files
+# ---------------------------------------
+.env
+*.env
+
+# ---------------------------------------
+# IDE / Editor folders
+# ---------------------------------------
+.vscode/
+.idea/
+
+# ---------------------------------------
+# Build artifacts (Java/Kotlin / Gradle)
+# ---------------------------------------
+build/
+out/
+*.jar
+*.class
+
+# ---------------------------------------
+# Logs
+# ---------------------------------------
+*.log
+
+# ---------------------------------------
+# OS-specific files
+# ---------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------
+# Virtual environments (Python)
+# ---------------------------------------
+venv/
+.env/
