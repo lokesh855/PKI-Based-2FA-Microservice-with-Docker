@@ -24,6 +24,7 @@ The system is fully containerized and evaluated based on reproducibility and cor
 # Docker Container Build and Run Commands
 
 docker-compose build
+
 docker-compose up -d
 
 

@@ -31,12 +31,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && dpkg-reconfigure -f noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/*
 
-
-# Create virtual env
+# Virtual environment
 ENV VENV_PATH=/opt/venv
 RUN python -m venv ${VENV_PATH}
 ENV PATH="${VENV_PATH}/bin:${PATH}"
-
 
 # Install dependencies
 COPY --from=builder /wheels /wheels
@@ -44,32 +42,21 @@ RUN pip install --no-cache-dir /wheels/*
 
 
 # ------------------------------------------------------------
-# Copy Project Files
+# Copy Application Code ONLY
 # ------------------------------------------------------------
-
 COPY app/ /app/app/
-COPY data/ /data/
-COPY encrypted_seed.txt /encrypted_seed.txt
 COPY scripts/ /app/scripts/
 RUN chmod +x /app/scripts/*.sh
 
-# --- FIXED KEYS COPY  ---
-COPY student_private.pem /keys/student_private.pem
-COPY student_public.pem /keys/student_public.pem
-COPY instructor_public.pem /keys/instructor_public.pem
-
-
 # ------------------------------------------------------------
-# Cron Job Setup
+# Cron Job
 # ------------------------------------------------------------
 COPY cron/2fa-cron /etc/cron.d/2fa-cron
-
 RUN chmod 0644 /etc/cron.d/2fa-cron \
     && crontab /etc/cron.d/2fa-cron
 
-
 # ------------------------------------------------------------
-# Create mount points WITH PROPER PERMISSIONS
+# Runtime directories (mounted volumes)
 # ------------------------------------------------------------
 RUN mkdir -p /data /cron /var/log/cron \
     && chmod 755 /data \
